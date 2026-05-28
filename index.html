@@ -292,8 +292,6 @@
   .habit-row:hover .del-btn { opacity: 1; }
   .del-btn:hover { color: var(--danger); }
   .del-btn:focus-visible { outline: 2px solid var(--danger); outline-offset: 2px; opacity: 1; }
-
-  /* ── CHECKBOXES ── */
   .check-cell {
     display: flex;
     align-items: center;
@@ -577,7 +575,7 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 
 let habits = loadHabits();
 let checks = loadChecks();
-let weekOffset = 0; // 0 = current week
+let weekOffset = 0; 
 
 function currentMonday() {
   const today = new Date();
@@ -600,7 +598,7 @@ function calcStreak(habitId) {
 
   let count = 0;
   const cursor = new Date(start);
-  // Safety: max 365 days back
+ 
   for (let i = 0; i < 365; i++) {
     const k = checkKey(habitId, formatDateKey(cursor));
     if (checks[k]) { count++; cursor.setDate(cursor.getDate() - 1); }
@@ -766,7 +764,7 @@ function toggleCheck(habitId, dateStr, btnEl) {
   if (checks[key]) { delete checks[key]; }
   else { checks[key] = true; }
   saveChecks(checks);
-  // Animate just this button, re-render rest
+ 
   render();
 }
 
@@ -797,7 +795,7 @@ function startRename(id, el) {
   const old = el.textContent;
   el.setAttribute('contenteditable', 'true');
   el.focus();
-  // Select all
+ 
   const range = document.createRange();
   range.selectNodeContents(el);
   window.getSelection().removeAllRanges();
